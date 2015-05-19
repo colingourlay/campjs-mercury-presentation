@@ -1,0 +1,38 @@
+/* Basic */
+
+.Deck--theme-basic .Slide {
+    display: none;
+}
+
+.Deck--theme-basic .Slide.is-active {
+    display: block;
+    display: flex;
+}
+
+/* Fader */
+
+.Deck--theme-fader .Slide {
+    transition: opacity 0.25s;
+    opacity: 0;
+}
+
+.Deck--theme-fader .Slide.is-active {
+    transition: opacity 0.25s 0.25s;
+    opacity: 1;
+}
+
+/* Slider */
+
+.Deck--theme-slider .Slide {
+    transition: transform 0.25s;
+    transform: translate(-100%, 0);
+}
+
+.Deck--theme-slider .Slide.is-active {
+    transition: transform 0.25s 0.25s;
+    transform: translate(0, 0);
+}
+
+.Deck--theme-slider .Slide.is-active ~ .Slide {
+    transform: translate(100%, 0);
+}

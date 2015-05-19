@@ -1,0 +1,52 @@
+{
+  "name": "campjs-mercury-presentation",
+  "description": "Elements of Mercury",
+  "version": "0.0.0",
+  "author": {
+    "name": "Colin Gourlay",
+    "email": "colin@colin-gourlay.com",
+    "url": "http://colin-gourlay.com"
+  },
+  "dependencies": {
+    "basscss": "^6.1.4",
+    "cuid": "~1.2.4",
+    "debounce": "^1.0.0",
+    "domready": "~1.0.7",
+    "global": "~4.3.0",
+    "json-markup": "^0.1.6",
+    "lodash": "~2.4.1",
+    "mercury": "^14.0.0",
+    "normalize.css": "~3.0.2",
+    "prismjs": "0.0.1",
+    "suitcss-base": "~0.7.0",
+    "xtend": "~4.0.0"
+  },
+  "devDependencies": {
+    "brfs": "^1.4.0",
+    "browserify": "^8.0.0",
+    "clean-css": "~2.2.16",
+    "gazer": "0.0.3",
+    "node-static": "~0.7.6",
+    "suitcss-preprocessor": "~0.4.0",
+    "uglify-js": "^2.4.16"
+  },
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build_root": "rsync -a src/assets/ build",
+    "build_css": "cd src/styles && cat index.css | suitcss | cleancss -o ../../build/index.css",
+    "build_css-debug": "cd src/styles && suitcss index.css ../../build/index.css -v",
+    "build_js": "browserify -t brfs src/scripts/index.js | uglifyjs -mc > build/index.js",
+    "build_js-debug": "browserify -t brfs src/scripts/index.js -d > build/index.js",
+    "build": "npm run clean && npm run build_root && npm run build_css && npm run build_js",
+    "build-debug": "npm run clean && npm run build_root && npm run build_css-debug && npm run build_js-debug",
+    "watch_assets": "gazer -p 'src/assets/**/*' npm run build_root &",
+    "watch_styles": "gazer -p 'src/styles/**/*' npm run build_css-debug &",
+    "watch_scripts": "gazer -p 'src/scripts/**/*' npm run build_js-debug &",
+    "watch": "npm run watch_assets && npm run watch_styles && npm run watch_scripts",
+    "server": "static build -p 8000",
+    "dist": "npm run build && npm run server",
+    "dev": "npm run build-debug && npm run watch && npm run server",
+    "start": "npm install && npm run dev"
+  }
+}

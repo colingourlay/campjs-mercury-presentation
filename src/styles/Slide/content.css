@@ -1,0 +1,18 @@
+.Slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Slide-content code {
+    padding: 0.5em 1em !important;
+    font-size: 0.5em;
+}
+
+:root {
+    --heading-margin-top: 0.5em;
+    --heading-margin-bottom: 0.25em;
+    --button-padding-y: 0.5em;
+    --button-padding-x: 1em;
+}
