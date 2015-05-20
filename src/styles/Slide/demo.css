@@ -51,7 +51,7 @@
 }
 
 .Slide-demoLog::after {
-    content: 'Diff';
+    content: 'Diff log';
     right: 0;
 }
 

@@ -26,16 +26,14 @@
     "browserify": "^8.0.0",
     "clean-css": "~2.2.16",
     "gazer": "0.0.3",
-    "html-inline": "^1.1.1",
     "node-static": "~0.7.6",
     "suitcss-preprocessor": "~0.4.0",
     "uglify-js": "^2.4.16"
   },
   "private": true,
   "scripts": {
-    "deploy": "npm run build && npm run dist && npm run deploy-current",
-    "deploy-current": "surge -p dist -d eom.surge.sh",
-    "dist": "mkdir -p dist && cat build/index.html | html-inline -b build > dist/index.html",
+    "deploy": "npm run build && npm run deploy-current",
+    "deploy-current": "surge -p build -d eom.surge.sh",
     "clean": "rm -rf build && mkdir build",
     "build_root": "rsync -a src/assets/ build",
     "build_css": "cd src/styles && cat index.css | suitcss | cleancss -o ../../build/index.css",

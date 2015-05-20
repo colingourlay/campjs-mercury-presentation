@@ -2,7 +2,6 @@ module.exports = [`
 <h1>Elements of Mercury</h1>
 <p>Colin Gourlay (<a href="http://twitter.com/collypops" target="_blank">@collypops</a>)</p>
 <br>
-<br>
 <p><small>Slides: <a href="http://eom.surge.sh" target="_blank">eom.surge.sh</a></small></p>
 
 `,`

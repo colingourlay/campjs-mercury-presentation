@@ -12,7 +12,7 @@ function Deck(slides) {
         slides: hg.array(slides.map(Slide)),
         activeIndex: hg.value(0),
         isSettingsVisible: hg.value(false),
-        isLogVisible: hg.value(true),
+        isLogVisible: hg.value(false),
         theme: hg.value(THEMES[0]),
         channels: {
             updateLogVisibility: updateLogVisibility,
