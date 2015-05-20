@@ -2,7 +2,7 @@ var domready = require('domready');
 var hg = require('mercury');
 
 var Deck = require('./Deck');
-var slides = require('./slides');
+var slides = require('./slides/index');
 
 domready(function () {
     var state = Deck(slides);

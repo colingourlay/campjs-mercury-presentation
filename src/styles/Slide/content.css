@@ -6,8 +6,12 @@
 }
 
 .Slide-content code {
-    padding: 0.5em 1em !important;
     font-size: 0.5em;
+}
+
+.Slide-content > code {
+    padding: 0 !important;
+    background-color: transparent !important;
 }
 
 :root {

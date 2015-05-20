@@ -1,0 +1,20 @@
+.Deck-settings {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding: 10%;
+    background-color: #fff;
+}
+
+.Deck-settingsField {
+    margin: 0.25em 0;
+    font-size: 0.5em;
+}
+
+.Deck-settingsField label {
+    display: inline-block;
+    width: 10em;
+}

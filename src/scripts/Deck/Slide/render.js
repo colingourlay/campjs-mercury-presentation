@@ -4,7 +4,7 @@ var Prism = require('prismjs');
 
 module.exports = render;
 
-function render(state, isActive) {
+function render(state, isActive, isLogVisible) {
     return h('div.Slide' + (isActive ? '.is-active' : ''), [
         h('div.Slide-content', {
             innerHTML: state.content
@@ -13,13 +13,13 @@ function render(state, isActive) {
             h('div.Slide-demoContent', [
                 hg.partial(state.demoPartial, state.demoState)
             ]),
-            h('div.Slide-demoLog', [
+            isLogVisible ? h('div.Slide-demoLog', [
                 h('code.language-javascript.Slide-demoDiffs', state.demoDiffs.map(function (diff) {
                     return h('div.Slide-demoDiff', {
                         innerHTML: Prism.highlight(JSON.stringify(diff), Prism.languages.javascript)
                     });
                 }))
-            ])
+            ]) : null
         ]) : null
     ]);
 }

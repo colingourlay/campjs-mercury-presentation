@@ -14,7 +14,8 @@ html {
 }
 
 /*@import "../../node_modules/basscss/src/basscss.css";*/
-@import "../../node_modules/basscss/node_modules/basscss-defaults/index.css";
+/*@import "../../node_modules/basscss/node_modules/basscss-defaults/index.css";*/
 @import "../../node_modules/basscss/node_modules/basscss-base-reset/index.css";
 @import "../../node_modules/basscss/node_modules/basscss-base-typography/index.css";
 @import "../../node_modules/basscss/node_modules/basscss-base-buttons/index.css";
+@import "../../node_modules/basscss/node_modules/basscss-color-base/index.css";

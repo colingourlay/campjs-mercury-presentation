@@ -1,5 +1,5 @@
 @import "../../node_modules/json-markup/style.css";
-@import "../../node_modules/prismjs/dist/prism-tomorrow/prism-tomorrow.css";
+@import "../../node_modules/prismjs/dist/prism-default/prism-default.css";
 
 @import "./base.css";
 @import "./Deck/index.css";

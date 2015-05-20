@@ -1,16 +1,17 @@
-var content = [function () {/*!
-
+module.exports = [`
 <h1>Elements of Mercury</h1>
-<p>Colin Gourlay - @collypops</p>
+<p>Colin Gourlay (<a href="http://twitter.com/collypops" target="_blank">@collypops</a>)</p>
+<br>
+<br>
+<p><small>Slides: <a href="http://eom.surge.sh" target="_blank">eom.surge.sh</a></small></p>
 
-*/}, function () {/*!
+`,`
 
 <p>one</p>
 
-*/}, function () {/*!
+`,`
 
 <h2>Click Counter</h2>
-
 <pre>
 hg.state({
     counter: hg.value(0),
@@ -28,8 +29,13 @@ function render(state) {
 }
 </pre>
 
-*/}, function ClickCounter() {/*!
+`, {ClickCounter: `
 
-*/}];
+<p>Demo</p>
 
-module.exports = content;
+`},`
+
+<h2>Thanks</h2>
+<p>Colin Gourlay (<a href="http://twitter.com/collypops" target="_blank">@collypops</a>)</p>
+
+`];
