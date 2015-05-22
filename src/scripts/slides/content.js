@@ -278,6 +278,7 @@ function render(state) {
 `,
 `
 <h3><pre>hg.main</pre></h3>
+<br>
 <pre>
 // Assume we have \`state\` (including channels) and \`render\`
 
@@ -290,7 +291,8 @@ var main = hg.main(state(), render, {
 document.body.appendChild(main.target);
 state(main.update);
 </pre>
-<p>Renders & DOM patches happen inside <pre>requestAnimationFrame</pre></p>
+<br>
+<p>DOM patches happen inside <pre>requestAnimationFrame</pre></p>
 `,
 `
 <img width="100%" src="images/Reality_hg_app.svg">
@@ -331,18 +333,18 @@ hg.app(
 <img width="55.1301685%" src="images/js-for-millenials.jpg" style="border:1px solid #000"/>
 `,
 `
-<h2>Packages</h2>
+<h2>Packages!</h2>
 <p>99% of the mercury API is npm installable</p>
 <pre>
 hg.value     = require('observ')
 hg.struct    = require('observ-struct')
 hg.array     = require('observ-array')
 hg.varhash   = require('observ-varhash')
+hg.h         = require('virtual-dom/virtual-hyperscript')
+hg.partial   = require('vdom-thunk')
 hg.create    = require('virtual-dom/vdom/create-element')
 hg.diff      = require('virtual-dom/vtree/diff')
 hg.patch     = require('virtual-dom/vdom/patch')
-hg.h         = require('virtual-dom/virtual-hyperscript')
-hg.partial   = require('vdom-thunk')
 hg.Delegator = require('dom-delegator')
 hg.send*     = require('value-event/*')
 hg.main      = require('main-loop')
@@ -351,10 +353,10 @@ hg.main      = require('main-loop')
 `
 <h2>Mix &amp; match</h2>
 <ul>
-    <li>Define your models in Backbone</li>
-    <li>Write your render functions in JSX</li>
-    <li>Replace virtual-dom with React</li>
-    <li>Replace observ with Rx.JS Observables</li>
+    <li>Define your models in Backbone?</li>
+    <li>Write your render functions in JSX?</li>
+    <li>Replace virtual-dom with React?</li>
+    <li>Replace observ with Rx.JS Observables?</li>
 </ul>
 `,
 `
