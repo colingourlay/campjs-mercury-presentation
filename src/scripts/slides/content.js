@@ -328,7 +328,7 @@ hg.app(
 <img width="100%" src="images/Effective.svg">
 `,
 `
-<img width="55.1301685%" src="images/js-for-millenials.png" style="border:1px solid #000"/>
+<img width="55.1301685%" src="images/js-for-millenials.jpg" style="border:1px solid #000"/>
 `,
 `
 <h2>Packages</h2>
