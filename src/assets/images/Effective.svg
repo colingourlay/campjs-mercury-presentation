@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="720px" height="480px" viewBox="0 0 720 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12005) - http://www.bohemiancoding.com/sketch -->
+    <title>Effective</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Effective" sketch:type="MSArtboardGroup">
+            <g id="Input" sketch:type="MSLayerGroup" transform="translate(80.000000, 180.000000)">
+                <rect id="BG" fill="#4990E2" sketch:type="MSShapeGroup" x="0" y="0" width="120" height="60"></rect>
+                <text id="Text" sketch:type="MSTextLayer" font-family="Monaco" font-size="24" font-weight="normal" line-spacing="24" fill="#FFFFFF">
+                    <tspan x="24" y="37">Input</tspan>
+                </text>
+            </g>
+            <g id="DOM" sketch:type="MSLayerGroup" transform="translate(50.000000, 310.000000)">
+                <rect id="BG" stroke="#9B9B9B" stroke-width="4" stroke-linejoin="round" stroke-dasharray="8,4" fill="#F5F5F5" sketch:type="MSShapeGroup" x="10" y="10" width="600" height="100"></rect>
+                <text sketch:type="MSTextLayer" font-family="Monaco" font-size="24" font-weight="normal" line-spacing="24" fill="#9B9B9B">
+                    <tspan x="287.241379" y="67">DOM</tspan>
+                </text>
+                <g id="Raw-Input" transform="translate(29.517241, 30.000000)">
+                    <rect id="BG" fill="#9B9B9B" sketch:type="MSShapeGroup" x="0.482758621" y="0" width="120" height="60"></rect>
+                    <text id="Text" sketch:type="MSTextLayer" font-family="Monaco" font-size="18" font-weight="normal" sketch:alignment="middle" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="42.8362406" y="25">Raw</tspan>
+                        <tspan x="32.0344828" y="45">Input</tspan>
+                    </text>
+                </g>
+                <g id="Raw-Output" transform="translate(469.689655, 30.000000)">
+                    <rect id="BG" fill="#9B9B9B" sketch:type="MSShapeGroup" x="0.310344828" y="0" width="120" height="60"></rect>
+                    <text id="Text" sketch:type="MSTextLayer" font-family="Monaco" font-size="18" font-weight="normal" sketch:alignment="middle" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="42.8922919" y="24">Raw</tspan>
+                        <tspan x="26.6896552" y="44">Output</tspan>
+                    </text>
+                </g>
+                <rect id="Overlay" fill-opacity="0.497282609" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="620" height="120"></rect>
+            </g>
+            <g id="Render" sketch:type="MSLayerGroup" transform="translate(520.000000, 180.000000)">
+                <rect id="BG" fill="#4990E2" sketch:type="MSShapeGroup" x="0" y="0" width="120" height="60"></rect>
+                <text id="Text" sketch:type="MSTextLayer" font-family="Monaco" font-size="24" font-weight="normal" line-spacing="24" fill="#FFFFFF">
+                    <tspan x="17" y="37">Render</tspan>
+                </text>
+            </g>
+            <g id="State" sketch:type="MSLayerGroup" transform="translate(300.000000, 60.000000)">
+                <rect id="BG" fill="#4990E2" sketch:type="MSShapeGroup" x="0" y="0" width="120" height="60"></rect>
+                <text id="Text" sketch:type="MSTextLayer" font-family="Monaco" font-size="24" font-weight="normal" line-spacing="24" fill="#FFFFFF">
+                    <tspan x="24" y="37">State</tspan>
+                </text>
+            </g>
+            <g id="Arrows" sketch:type="MSLayerGroup" transform="translate(139.000000, 92.000000)" stroke="#000000" stroke-linecap="square">
+                <path d="M0.5,87.5 L159.5,0.5" id="Input-to-State" stroke-width="2" sketch:type="MSShapeGroup"></path>
+                <path id="Input-to-State-decoration-1" d="M159.5,0.5 L148.585534,3.05233656 L151.465602,8.31591001 L159.5,0.5 Z" stroke-width="2"></path>
+                <path d="M282,1 L443,87.5" id="State-to-Render" stroke-width="2" sketch:type="MSShapeGroup"></path>
+                <path id="State-to-Render-decoration-1" d="M443,87.5 L434.906024,79.7458039 L432.066321,85.0312636 L443,87.5 Z" stroke-width="2"></path>
+                <path d="M380,122.5 L65.5,122.5" id="Render-to-Input" stroke-width="3" sketch:type="MSShapeGroup"></path>
+                <path id="Render-to-Input-decoration-1" d="M65.5,122.5 L76.3,125.5 L76.3,119.5 L65.5,122.5 Z" stroke-width="3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

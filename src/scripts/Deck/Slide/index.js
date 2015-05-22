@@ -6,7 +6,7 @@ function Slide(slide) {
     var state = hg.state({
         content: hg.value(slide.content),
         demoState: slide.demo ? slide.demo.state : null,
-        demoPartial: slide.demo ? hg.value(slide.demo.partial) : null,
+        demoRender: slide.demo ? hg.value(slide.demo.render) : null,
         demoDiffs: slide.demo ? hg.array([]) : null
     });
 

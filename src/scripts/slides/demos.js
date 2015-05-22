@@ -2,6 +2,20 @@ var hg = require('mercury');
 var h = require('mercury').h;
 
 var demos = {
+    Clock: {
+        state: (function () {
+            var state = hg.struct({time: new Date()});
+
+            setInterval(function () {
+                state.set({time: new Date()})
+            }, 1000)
+
+            return state;
+        })(),
+        render: function (state) {
+            return h('h1', state.time.toTimeString().split(' ')[0]);
+        }
+    },
     Counter: {
         state: hg.state({
             counter: hg.value(0),
@@ -11,13 +25,13 @@ var demos = {
                 }
             }
         }),
-        partial: function (state) {
+        render: function (state) {
             return h('button', {
                 'ev-click': hg.sendClick(state.channels.increment)
             }, state.counter + ' clicks');
         }
     },
-    Clock: {
+    SyncableClock: {
         state: hg.state({
             time: hg.value(new Date()),
             sync: hg.value(null),
@@ -28,13 +42,13 @@ var demos = {
                         state.sync.set(null);
                     } else {
                         state.sync.set(setInterval(function () {
-                            state.time.set(new Date())
+                            state.time.set(new Date());
                         }, 1000));
                     }
                 }
             }
         }),
-        partial: function (state) {
+        render: function (state) {
             return h('div', [
                 h('h4', state.time.toTimeString().split(' ')[0]),
                 h('button', {

@@ -11,7 +11,7 @@ function render(state, isActive, isLogVisible) {
         }),
         state.demoState ? h('div.Slide-demo', [
             h('div.Slide-demoContent', [
-                hg.partial(state.demoPartial, state.demoState)
+                hg.partial(state.demoRender, state.demoState)
             ]),
             isLogVisible ? h('div.Slide-demoLog', [
                 h('code.language-javascript.Slide-demoDiffs', state.demoDiffs.map(function (diff) {
