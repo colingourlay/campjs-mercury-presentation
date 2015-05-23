@@ -2,6 +2,8 @@
 
 An interactive slide deck for my CampJS V presentation on [mercury](https://github.com/Raynos/mercury), which also serves as an example mercury app.
 
+You can view the presentation at [eom.surge.sh](http://eom.surge.sh).
+
 # Getting started
 
     $ npm install
