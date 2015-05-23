@@ -362,10 +362,9 @@ hg.main      = require('main-loop')
 `
 <h2>Thanks</h2>
 <p><a href="http://twitter.com/collypops" target="_blank">@collypops</a></p>
-<br>
-<h4>Notes:</h4>
 <ul>
     <li>This slide deck: <a href="http://eom.surge.sh" target="_blank">eom.surge.sh</a></li>
+    <li>Slides code (mercury app): <a href="http://bit.ly/eomcode" target="_blank">bit.ly/eomcode</a></li>
     <li>Mercury FAQs: <a href="http://bit.ly/mercuryfaq">bit.ly/mercuryfaq</a></li>
     <li>Book cover image credit: <a href="https://twitter.com/wesbos">@wesbos</a></li>
     <li>The GIF credit: Seth MacFarlane?</li>
