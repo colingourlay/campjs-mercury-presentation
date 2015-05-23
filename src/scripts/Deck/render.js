@@ -8,11 +8,12 @@ module.exports = render;
 function render(state) {
     return h('div.Deck.Deck--theme-' + state.theme,
         state.slides.map(function (slide, index) {
-            return Slide.render(slide, index === state.activeIndex, state.isLogVisible);
-        }).concat(state.isSettingsVisible ?
-            [hg.partial(renderSettings, state, state.channels)] :
-            [null]
-        )
+            var isSlideActive = index === state.activeIndex;
+            return Slide.render(slide, isSlideActive, state.isLogVisible);
+        }).concat([state.isSettingsVisible ?
+            hg.partial(renderSettings, state, state.channels) :
+            null
+        ])
     );
 }
 

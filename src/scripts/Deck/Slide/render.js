@@ -14,12 +14,18 @@ function render(state, isActive, isLogVisible) {
                 hg.partial(state.demoRender, state.demoState)
             ]),
             isLogVisible ? h('div.Slide-demoLog', [
-                h('code.language-javascript.Slide-demoDiffs', state.demoDiffs.map(function (diff) {
-                    return h('div.Slide-demoDiff', {
-                        innerHTML: Prism.highlight(JSON.stringify(diff), Prism.languages.javascript)
-                    });
-                }))
+                h('code.language-javascript.Slide-demoDiffs',
+                    state.demoDiffs.map(renderDiff))
             ]) : null
         ]) : null
     ]);
+}
+
+function renderDiff(diff) {
+    return h('div.Slide-demoDiff', {
+        innerHTML: Prism.highlight(
+            JSON.stringify(diff),
+            Prism.languages.javascript
+        )
+    });
 }

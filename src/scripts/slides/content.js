@@ -9,9 +9,9 @@ module.exports = [
 <h2>Mercury</h2>
 <br>
 <ul>
-    <li>Created by Jake Verbaten (<a href="http://twitter.com/Raynos" target="_blank">@Raynos</a>)</li>
-    <li>Utility belt of modules + helper functions</li>
-    <li>Enables <strong>unidirectional</strong> apps</li>
+    <li>Utility belt of modules + helper functions <br>for building <strong>unidirectional</strong> apps</li>
+    <li>Curated (and mostly created) by <br>Jake Verbaten (<a href="http://twitter.com/Raynos" target="_blank">@Raynos</a>)</li>
+    <li><a href="https://github.com/Raynos/mercury" target="_blank">github.com/Raynos/mercury</a></li>
 </ul>
 `,
 `
