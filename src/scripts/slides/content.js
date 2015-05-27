@@ -41,7 +41,7 @@ export default [
 </ul>
 `,
 `
-<h1><pre>var hg = require('mercury');</pre></h1>
+<h1><pre>import hg from 'mercury'</pre></h1>
 `,
 `
 <h1><pre>hg.*</pre></h1>
@@ -61,13 +61,13 @@ export default [
 <h3>State</h3>
 <br>
 <pre>
-var state = hg.value('');
+const state = hg.value('')
 
-state(function listener(state) {
-    console.log(state);
-});
+state((value) => {
+    console.log(value)
+})
 
-state.set('foo');
+state.set('foo')
 
 // > 'foo'
 </pre>
@@ -79,17 +79,14 @@ state.set('foo');
 <h3>Render</h3>
 <br>
 <pre>
-var state = hg.value('');
+const state = hg.value('')
+const render = state => hg.h('div', state)
 
-function render(state) {
-    return hg.h('div', state));
-}
-
-state(function (state) {
-    var vtree = render(state);
+state((value) => {
+    const vtree = render(value)
 
     // Do something with vtree...
-});
+})
 </pre>
 `,
 `
@@ -100,40 +97,38 @@ state(function (state) {
 <pre>
 // Assume we have \`state\` and \`render\`
 
-var vtree = render(state);
-var el = hg.create(vtree);
+let vtree = render(state)
+let el = hg.create(vtree)
 
-document.body.appendChild(el);
+document.body.appendChild(el)
 
-state(function (state) {
-    var _vtree = render(state);
-    var patches = hg.diff(vtree, _vtree);
+state((state) => {
+    const _vtree = render(state)
+    const patches = hg.diff(vtree, _vtree)
 
-    el = hg.patch(el, patches);
-    vtree = _vtree;
-});
+    el = hg.patch(el, patches)
+    vtree = _vtree
+})
 </pre>
 `,
 `
 <h4>Example: Clock</h4>
 <pre>
-var state = hg.struct({time: hg.value(new Date())};
+const state = hg.struct({time: hg.value(new Date())}
+const render = state =>
+    hg.h('h1', state.time.toTimeString().split(' ')[0])
 
-function render(state) {
-    return hg.h('h1', state.time.toTimeString().split(' ')[0]);
-}
+let vtree = render(state)
+let el = hg.create(vtree)
+document.body.appendChild(el)
 
-var vtree = render(state);
-var el = hg.create(vtree);
-document.body.appendChild(el);
+state((state) => {
+    const _vtree = render(state)
+    el = hg.patch(el, hg.diff(vtree, _vtree))
+    vtree = _vtree
+})
 
-state(function (state) {
-    var _vtree = render(state);
-    el = hg.patch(el, hg.diff(vtree, _vtree));
-    vtree = _vtree;
-});
-
-setInterval(function () { state.time.set(new Date()); }, 1000);
+setInterval(() => { state.time.set(new Date()) }, 1000)
 </pre>
 `,
 {Clock: '<h3>Clock Demo</h3>'},
@@ -143,12 +138,12 @@ setInterval(function () { state.time.set(new Date()); }, 1000);
 `
 <h3>Raw Input</h3>
 <pre>
-var del = hg.Delegator();
-var button = document.querySelector('#button');
+const del = hg.Delegator()
+const button = document.querySelector('#button')
 
-del.addEventListener(button, 'click', function (ev) {
-    // We know \`ev.target\` was clicked
-});
+del.addEventListener(button, 'click', (event) => {
+    // We know \`event.target\` was clicked
+})
 </pre>
 `,
 `
@@ -162,9 +157,9 @@ hg.h('form', {'ev-submit': hg.sendSubmit(listener, {baz: 0})}, [
     hg.h('input', {type: 'text', name: foo}),
     hg.h('input', {type: 'checkbox', name: bar}),
     hg.h('input', {type: 'submit'})
-]);
+])
 
-function listener(data) {
+const listener = (data) => {
     // data == {
     //     foo: '',
     //     bar: false,
@@ -179,19 +174,19 @@ function listener(data) {
 `
 <h3><pre>hg.channels</pre></h3>
 <pre>
-var state = hg.struct({
+const state = hg.struct({
     foo: hg.value(0),
     bar: hg.value(0),
     channels: hg.value(null)
-});
+})
 
 state.channels.set(hg.channels({
-    baz: function (state, data) {
+    baz: (state, data) => {
         // like the previous listener example,
         // but it has access to state...
-        state.foo.set(data.foo);
+        state.foo.set(data.foo)
     }
-}, state));
+}, state))
 </pre>
 `,
 `
@@ -204,15 +199,15 @@ state.channels.set(hg.channels({
 // property as a special case. It transparently
 // calls \`hg.channels\` and binds state for you.
 
-var state = hg.state({
+const state = hg.state({
     foo: hg.value(0),
     bar: hg.value(0),
     channels: {
-        baz: function (state, data) {
+        baz: (state, data) => {
             // (same as previous slide)
         }
     }
-});
+})
 </pre>
 `,
 `
@@ -221,17 +216,16 @@ var state = hg.state({
 hg.state({
     counter: hg.value(0),
     channels: {
-        increment: function (state) {
-            state.counter.set(state.counter() + 1);
+        increment: (state) => {
+            state.counter.set(state.counter() + 1)
         }
     }
-});
+})
 
-function render(state) {
-    return h('button', {
+const render = state =>
+    h('button', {
         'ev-click': hg.sendClick(state.channels.increment)
-    }, 'Clicks: ' + state.counter);
-}
+    }, 'Clicks: ' + state.counter)
 </pre>
 `,
 {Counter: '<h3>Counter Demo</h3>'},
@@ -242,25 +236,25 @@ hg.state({
     time: hg.value(new Date()),
     sync: hg.value(null),
     channels: {
-        toggleSync: function (state) {
+        toggleSync: (state) => {
             if (state.sync() != null) {
-                clearInterval(state.sync());
-                state.sync.set(null);
+                clearInterval(state.sync())
+                state.sync.set(null)
             } else {
-                state.sync.set(setInterval(function () {
-                    state.time.set(new Date());
-                }, 1000));
+                state.sync.set(setInterval(() => {
+                    state.time.set(new Date())
+                }, 1000))
             }
         }
     }
-}
+})
 </pre>
 `,
 `
 <h3>Syncable Clock (cont.)</h3>
 <pre>
-function render(state) {
-    return h('div', [
+const render = state =>
+    h('div', [
         h('h4', state.time.toTimeString().split(' ')[0]),
         h('button', {
             style: {
@@ -268,8 +262,7 @@ function render(state) {
             },
             'ev-click': hg.sendClick(state.channels.toggleSync)
         }, state.sync ? 'stop syncing' : 'start syncing')
-    ]);
-}
+    ])
 </pre>
 `,
 {SyncableClock: '<h3>Syncable Clock</h3>'},
@@ -282,14 +275,14 @@ function render(state) {
 <pre>
 // Assume we have \`state\` (including channels) and \`render\`
 
-var main = hg.main(state(), render, {
+const main = hg.main(state(), render, {
     diff: hg.diff,
     create: hg.create,
     patch: hg.patch
-});
+})
 
-document.body.appendChild(main.target);
-state(main.update);
+document.body.appendChild(main.target)
+state(main.update)
 </pre>
 <br>
 <p>DOM patches happen inside <pre>requestAnimationFrame</pre></p>
@@ -302,28 +295,28 @@ state(main.update);
 <pre>
 // Assume we have \`state\` (including channels) and \`render\`
 
-hg.app(document.body, state, render);
+hg.app(document.body, state, render)
 </pre>
 `,
 `
 <h3>Counter (full code)</h3>
 <pre>
-hg.app(
+import {app, h, sendClick, state, value} from 'mercury'
+
+app(
     document.body,
-    hg.state({
-        counter: hg.value(0),
+    state({
+        counter: value(0),
         channels: {
-            increment: function (state) {
-                state.counter.set(state.counter() + 1);
+            increment: (state) => {
+                state.counter.set(state.counter() + 1)
             }
         }
     }),
-    function render(state) {
-        return h('button', {
-            'ev-click': hg.sendClick(state.channels.increment)
-        }, 'Clicks: ' + state.counter);
-    }
-);
+    state => h('button', {
+        'ev-click': sendClick(state.channels.increment)
+    }, 'Clicks: ' + state.counter)
+)
 </pre>
 `,
 `
@@ -336,18 +329,21 @@ hg.app(
 <h2>Packages!</h2>
 <p>99% of the mercury API is npm installable</p>
 <pre>
-hg.value     = require('observ')
-hg.struct    = require('observ-struct')
-hg.array     = require('observ-array')
-hg.varhash   = require('observ-varhash')
-hg.h         = require('virtual-dom/virtual-hyperscript')
-hg.partial   = require('vdom-thunk')
-hg.create    = require('virtual-dom/vdom/create-element')
-hg.diff      = require('virtual-dom/vtree/diff')
-hg.patch     = require('virtual-dom/vdom/patch')
-hg.Delegator = require('dom-delegator')
-hg.send*     = require('value-event/*')
-hg.main      = require('main-loop')
+import value     from 'observ'
+import struct    from 'observ-struct'
+import array     from 'observ-array'
+import varhash   from 'observ-varhash'
+import h         from 'virtual-dom/virtual-hyperscript'
+import partial   from 'vdom-thunk'
+import create    from 'virtual-dom/vdom/create-element'
+import diff      from 'virtual-dom/vtree/diff'
+import patch     from 'virtual-dom/vdom/patch'
+import Delegator from 'dom-delegator'
+import send      from 'value-event/event'
+import send$     from 'value-event/$' // *
+import main      from 'main-loop'
+
+// * $ -> value/click/change/submit/key
 </pre>
 `,
 `
