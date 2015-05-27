@@ -1,41 +1,34 @@
-var Prism = require('prismjs');
-var content = require('./content');
-var demos = require('./demos');
+import {highlight, languages} from 'prismjs'
+import content from './content'
+import demos from './demos'
 
-var PRE_REGEX = /<pre>((?:\n|.)*)<\/pre>/;
-// var PRE_ALL_REGEX = /<pre>((?:\n|.)*)<\/pre>/g;
+const PRE_REGEX = /<pre>((?:\n|.)*)<\/pre>/
 
-var slides = content.map(function (value) {
-    var demoKey = typeof value === 'object' ? Object.keys(value)[0] : null;
-
-    var slide = {
-        content: demoKey ? value[demoKey] : value,
-    };
-
-    var chunks;
+export default content.map((value) => {
+    const demoKey = typeof value === 'object' ? Object.keys(value)[0] : null
+    const slide = {content: demoKey ? value[demoKey] : value}
+    let chunks
 
     if (slide.content.indexOf('<pre>') > -1) {
-        chunks = slide.content.split('</pre>');
-        slide.content = '';
+        chunks = slide.content.split('</pre>')
+        slide.content = ''
 
         while (chunks.length > 1) {
-            slide.content += chunks.shift().concat('</pre>').replace(PRE_REGEX, highlightPre);
+            slide.content += chunks.shift().concat('</pre>').replace(PRE_REGEX, highlightPre)
         }
 
-        slide.content += chunks.pop();
+        slide.content += chunks.pop()
     }
 
     if (demoKey && demos[demoKey]) {
-        slide.demo = demos[demoKey];
+        slide.demo = demos[demoKey]
     }
 
-    return slide;
-});
+    return slide
+})
 
 function highlightPre(match, g1) {
-    return '<code class="Slide-contentCode language-javascript">' +
-        Prism.highlight(g1, Prism.languages.javascript) +
-    '</code>';
-};
+    const code = highlight(g1, languages.javascript)
 
-module.exports = slides;
+    return `<code class="Slide-contentCode language-javascript">${code}</code>`
+}

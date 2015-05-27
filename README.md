@@ -1,6 +1,6 @@
 # Elements of Mercury
 
-An interactive slide deck for my CampJS V presentation on [mercury](https://github.com/Raynos/mercury), which also serves as an example mercury app.
+An interactive slide deck for my CampJS V presentation on [mercury](https://github.com/Raynos/mercury), which also serves as an example mercury app written in ES6/ES2015.
 
 You can view the presentation at [eom.surge.sh](http://eom.surge.sh).
 

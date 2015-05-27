@@ -1,4 +1,4 @@
-module.exports = [
+export default [
 `
 <h1>Elements of Mercury</h1>
 <p>Colin Gourlay (<a href="http://twitter.com/collypops" target="_blank">@collypops</a>)</p>
@@ -370,4 +370,4 @@ hg.main      = require('main-loop')
     <li>The GIF credit: Seth MacFarlane?</li>
 </ul>
 `
-];
+]

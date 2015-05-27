@@ -1,36 +1,34 @@
-var hg = require('mercury');
-var nav = require('./nav');
-var Slide = require('./Slide');
-var THEMES = require('./themes');
+import {array, state, value} from 'mercury'
+import nav from './nav'
+import scaled from '../scaled'
+import render from './render'
+import Slide from './Slide'
+import themes from './themes'
 
-require('../scaled')('.Deck', 720, 480);
-
-module.exports = Deck;
+scaled('.Deck', 720, 480)
 
 function Deck(slides) {
-    var state = hg.state({
-        slides: hg.array(slides.map(Slide)),
-        activeIndex: hg.value(0),
-        isSettingsVisible: hg.value(false),
-        isLogVisible: hg.value(true),
-        theme: hg.value(THEMES[0]),
+    return nav(state({
+        slides: array(slides.map(Slide)),
+        activeIndex: value(0),
+        isSettingsVisible: value(false),
+        isLogVisible: value(true),
+        theme: value(themes[0]),
         channels: {
             updateLogVisibility: updateLogVisibility,
             updateTheme: updateTheme
         }
-    });
-
-    nav(state);
-
-    return state;
+    }))
 }
 
-Deck.render = require('./render');
+Deck.render = render
+
+export default Deck
 
 function updateLogVisibility(state, data) {
-    state.isLogVisible.set(data.isLogVisible);
+    state.isLogVisible.set(data.isLogVisible)
 }
 
 function updateTheme(state, data) {
-    state.theme.set(data.theme);
+    state.theme.set(data.theme)
 }

@@ -1,15 +1,14 @@
-var domready = require('domready');
-var hg = require('mercury');
+import domready from 'domready'
+import {app} from 'mercury'
+import Deck from './Deck'
+import slides from './slides'
 
-var Deck = require('./Deck');
-var slides = require('./slides/index');
+domready(() => {
+    const state = Deck(slides)
 
-domready(function () {
-    var state = Deck(slides);
+    state((value) => {
+        console.log(value._diff)
+    })
 
-    state(function (value) {
-        console.log(value._diff);
-    });
-
-    hg.app(document.body, state, Deck.render);
-});
+    app(document.body, state, Deck.render)
+})

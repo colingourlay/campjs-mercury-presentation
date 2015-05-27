@@ -1,33 +1,30 @@
-module.exports = scaled;
+const regex = /(.*)/
+const cache = {}
 
-var stylesheets = {};
+export default function scaled(selector, width, height) {
+	const style = document.createElement('style')
 
-function scaled(selector, width, height) {
-	if (stylesheets[selector]) { return; }
+	if (cache[selector]) { return }
 
 	function rescale() {
-		var scale = Math.min(window.innerWidth / width, window.innerHeight / height);
-		var properties = ('transform:scale(' + scale + ');').replace(/(.*)/, '-webkit-$1-ms-$1$1');
+		const scale = Math.min(window.innerWidth / width, window.innerHeight / height)
+		const properties = (`transform:scale(${scale});`).replace(regex, '-webkit-$1-ms-$1$1')
 
-		if (sheet.cssRules.length > 0) {
-			sheet.deleteRule(0);
+		if (style.sheet.cssRules.length > 0) {
+			style.sheet.deleteRule(0)
 		}
 
-		if ('addRule' in sheet) {
-			sheet.addRule(selector, properties);
+		if ('addRule' in style.sheet) {
+			style.sheet.addRule(selector, properties)
 		} else {
-			sheet.insertRule(selector + '{' + properties + '}', 0);
+			style.sheet.insertRule(`${selector}\{${properties}\}`, 0)
 		}
 	}
 
-	var style = document.createElement('style');
+	cache[selector] = style
+	style.appendChild(document.createTextNode(''))
+	document.head.appendChild(style)
 
-	stylesheets[selector] = style;
-	style.appendChild(document.createTextNode(''));
-	document.head.appendChild(style);
-
-	var sheet = style.sheet;
-
-    window.addEventListener('resize', rescale);
-    rescale();
-};
+    window.addEventListener('resize', rescale)
+    rescale()
+}

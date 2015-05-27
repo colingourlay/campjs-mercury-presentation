@@ -1,22 +1,23 @@
-var hg = require('mercury');
-
-module.exports = Slide;
+import {array, state, value} from 'mercury'
+import render from './render'
 
 function Slide(slide) {
-    var state = hg.state({
-        content: hg.value(slide.content),
+    const model = state({
+        content: value(slide.content),
         demoState: slide.demo ? slide.demo.state : null,
-        demoRender: slide.demo ? hg.value(slide.demo.render) : null,
-        demoDiffs: slide.demo ? hg.array([]) : null
-    });
+        demoRender: slide.demo ? value(slide.demo.render) : null,
+        demoDiffs: slide.demo ? array([]) : null
+    })
 
     if (slide.demo) {
-        state.demoState(function (value) {
-            state.demoDiffs.push(value._diff);
-        });
+        model.demoState((value) => {
+            model.demoDiffs.push(value._diff)
+        })
     }
 
-    return state;
+    return model
 }
 
-Slide.render = require('./render');
+Slide.render = render
+
+export default Slide

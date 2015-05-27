@@ -1,19 +1,17 @@
-var hg = require('mercury');
-var h = require('mercury').h;
-var Slide = require('./Slide');
-var THEMES = require('./themes');
+import {h, partial, sendValue} from 'mercury'
+import Slide from './Slide'
+import THEMES from './themes'
 
-module.exports = render;
+export default function render(state) {
+    const settings = state.isSettingsVisible ?
+        partial(renderSettings, state, state.channels) : null
 
-function render(state) {
     return h('div.Deck.Deck--theme-' + state.theme,
-        state.slides.map(function (slide, index) {
-            var isSlideActive = index === state.activeIndex;
-            return Slide.render(slide, isSlideActive, state.isLogVisible);
-        }).concat([state.isSettingsVisible ?
-            hg.partial(renderSettings, state, state.channels) :
-            null
-        ])
+        state.slides.map((slide, index) => {
+            const isSlideActive = index === state.activeIndex
+
+            return Slide.render(slide, isSlideActive, state.isLogVisible)
+        }).concat([settings])
     );
 }
 
@@ -26,20 +24,18 @@ function renderSettings(state, channels) {
                 type: 'checkbox',
                 name: 'isLogVisible',
                 checked: state.isLogVisible,
-                'ev-change': hg.sendValue(channels.updateLogVisibility)
+                'ev-change': sendValue(channels.updateLogVisibility)
             }, 'Show demo logs?')
         ]),
         h('div.Deck-settingsField', [
             h('label', 'Theme'),
             h('select', {
                 name: 'theme',
-                'ev-change': hg.sendValue(channels.updateTheme)
-            }, THEMES.map(function (theme) {
-                return h('option', {
-                    value: theme,
-                    selected: theme === state.theme
-                }, theme)
-            }))
+                'ev-change': sendValue(channels.updateTheme)
+            }, THEMES.map(theme => h('option', {
+                value: theme,
+                selected: theme === state.theme
+            }, theme)))
         ])
-    ]);
+    ])
 }

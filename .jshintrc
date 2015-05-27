@@ -11,6 +11,8 @@
     "boss": true,
     "eqnull": true,
     "es5": false,
+    "esnext": true,
+    "asi": true,
     "strict": false,
     "evil": true,
     "node": true,

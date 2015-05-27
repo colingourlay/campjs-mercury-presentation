@@ -1,5 +1,5 @@
-module.exports = [
+export default [
     'slider',
     'fader',
     'basic'
-];
+]
